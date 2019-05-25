@@ -1,0 +1,57 @@
+	.modal-isi{
+		position: fixed;
+		z-index:6000;
+		background-color: rgba(0,0,0,0.7);
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+	.in-modal{
+		width: 55%;
+		height: 48%;
+		background-color: #fff;
+		margin: 35px auto;
+	}
+	.modal-title{
+		width: 100%;
+		height: 50px;
+		background-color: #0099FF;
+	}
+	.modal-title h3{
+		padding: 10px;
+		text-align: left;
+		font-weight: normal;
+		text-transform: capitalize;
+		color: #fff;
+	}
+	.modal-item{
+		padding: 20px;
+	}
+	#btn-kiri{
+		margin-top: 20px;
+		float: left;
+	}
+	#btn-kanan{
+		margin-top: 20px;
+		float: right;
+	}
+	.garis_border{
+		padding: 6px;
+		float: left;
+		width: 100%;
+		border: 1px solid #ccc;
+		height: auto;
+	}
+	.item-kiri{
+		width: 50%;
+		height: auto;
+		
+		float: left;
+	}
+	.item-kanan{
+		width: 50%;
+		height: auto;
+		float: right;
+
+	}
