@@ -23,10 +23,12 @@
                 $current_password = $this->input->post('current_password');
                 if(! password_verify($current_password, $data['user']['password'])){
                     $this->session->set_flashdata('messagechangepassword','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Wrong current password!</div></div>');
+                    $this->session->set_flashdata('berhasil','Password Lama Salah!');
                     redirect('user/profile');
                 }else{
                     if($current_password == $new_password){
                         $this->session->set_flashdata('messagechangepassword','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>New password cannot be the same as current password!</div></div>');
+                        $this->session->set_flashdata('berhasil','Password Baru Tidak Boleh Sama Dengan Password Lama!');
 
                         redirect('user/profile');
                     }else{
@@ -77,6 +79,7 @@
                 $this->db->where('email' , $email);
                 $this->db->update('user');
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Your profile has been updated!</div></div>');
+                    $this->session->set_flashdata('berhasil','Profil Berhasil Diperbarui!');
                 redirect('user/profile');
             }
         }
@@ -112,6 +115,7 @@
                 ];
                 if($this->user->insert($ar) > 0){
                     $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>New User was successfull added!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menambahkan User!');
                 }else{
                     $this->session->set_flashdata('message','<div class="alert alert-warning alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
                 }
@@ -125,6 +129,7 @@
                 $set = ['is_active' => "0"];
                 if($this->user->akun('user',$set,$where) > 0){
                      $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account was successfully disabled!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menonaktifkan User!');
                 }else{
                     $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account activated failed!</div></div>');       
                 }
@@ -132,6 +137,7 @@
                 $set = ['is_active' => "1"];
                 if($this->user->akun('user',$set,$where) > 0){
                     $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account activated successfull !</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Mengaktifkan User!');
                        
                 }else{
                         $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Failde to activate account</div></div>');       

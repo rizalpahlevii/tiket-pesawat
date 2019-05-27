@@ -21,6 +21,7 @@
             $where = ['id_penerbangan' => $id];
             if($this->penerbangan->delete('penerbangan',$where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Success!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menghapus Data Penerbangan!');
             }else{
                  $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }
@@ -39,6 +40,7 @@
             ];
             if($this->penerbangan->insert('penerbangan',$data) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Success!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menambah Data Penerbangan!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }

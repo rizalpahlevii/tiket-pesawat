@@ -22,6 +22,8 @@
             ];
             if($this->bandara->insert('bandara',$data) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>New Bandara was successfull added!</div></div>');
+
+                $this->session->set_flashdata('berhasil','Berhasil Menambah Bandara!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }
@@ -32,6 +34,7 @@
             $where = ['id_bandara' => $id];
             if($this->bandara->delete('bandara',$where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Bandara Was deleted!</div></div>');
+                $this->session->set_flashdata('berhasil','Berhasil Menghapus Bandara!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }
@@ -57,6 +60,8 @@
             ];
             if($this->bandara->update('bandara',$data,$where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Bandara Was updated!</div></div>');
+
+                $this->session->set_flashdata('berhasil','Berhasil Mengedit Bandara!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }

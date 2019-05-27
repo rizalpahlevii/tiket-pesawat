@@ -42,6 +42,7 @@
             ];
             if($this->pesawat->insert('pesawat',$ar) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>new Airlines data successfully added!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menambah Pesawat!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error. failed to add aircraft data!!</div></div>');
             }
@@ -54,6 +55,7 @@
             if($this->pesawat->delete('pesawat',['id_pesawat' => $id]) > 0){
                 unlink(FCPATH . 'assets/master/pesawat/'. $image);
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Airline Was deleted!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menghapus Pesawat!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }
@@ -110,6 +112,7 @@
            
             if($this->pesawat->update('pesawat', $data, $where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Airline Was updated!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Mengedit Pesawat!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }

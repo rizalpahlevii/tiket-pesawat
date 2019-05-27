@@ -11,6 +11,7 @@
             $where = ['id_tarif' => $id];
             if($this->tarif->deleteTarif($where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Success!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menghapus Tarif Penerbangan!');
             }
             else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
@@ -42,6 +43,7 @@
                 // TRUE == jalankan fungi insert
                 if($this->tarif->insert('tarif_penerbangan',$data) > 0){
                     $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Success!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menmabahkan Tarif Penerbangan!');
                 }else{
                     $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
                 }

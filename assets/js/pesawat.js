@@ -1,9 +1,13 @@
 $(document).ready(function(){
+    const flashData = $('.flash-data').data('flashdata');
+    if(flashData){
+        swal('Done!',flashData,'success');
+    }
     $(document).ready(function(){
-      $('#tableku').dataTable();
+        $('#tableku').dataTable();
     });
     $(document).ready(function(){
-      $('#tblku').dataTable();
+        $('#tblku').dataTable();
     });
     $(document).on('click', '.tmb-edit', function(){
         var id = $(this).data('kode');
@@ -145,6 +149,7 @@ $(document).ready(function(){
                 $('#kode_bandara').val(res.kode_bandara);
                 $('#nama_bandara').val(res.nama_bandara);
                 $('#kota_bandara').val(res.kota_bandara);
+                $('#asal_penerbangan').val(res.kota_bandara);
                 $('#modalBandara').modal('hide');
             }
         });

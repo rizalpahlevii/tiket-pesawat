@@ -96,6 +96,7 @@
 
       <!-- Main Content -->
       <div class="main-content">
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('berhasil') ?>"></div>
         <?php echo $contents; ?>
       </div>
       <footer class="main-footer">
@@ -115,6 +116,7 @@
   <script src="<?php echo base_url(); ?>assets/modules/tooltip.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/'); ?>dataTable/datatables.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/stisla.js"></script>

@@ -16,6 +16,7 @@
                   </div>
 
                   <div class="card-body">
+                    
                     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
                     <a href="<?php echo site_url('bandara/excel'); ?>" target="_blank" class="btn btn-success mb-3 float-right">Export Excel</a>
                     <a href="<?php echo site_url('bandara/pdf'); ?>" target="_blank" class="btn btn-warning mb-3 mr-2 float-right">Export PDF</a>

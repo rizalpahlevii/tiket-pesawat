@@ -186,7 +186,7 @@
                                 <i class="fas fa-plane"></i>
                               </div>
                             </div>
-                            <input type="text" class="form-control phone-number" name="asal_penerbangan" id="asal_penerbangan">
+                            <input type="text" class="form-control phone-number" name="asal_penerbangan" id="asal_penerbangan" readonly style="cursor: no-drop;">
                           </div>
                         </div>
                       </div>
@@ -257,7 +257,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow: auto;">
         <div class="table-responsive">
           <table class="table table-stripped" id="tableku">
             <thead>
@@ -292,7 +292,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow: all;">
         <div class="table-responsive">
           <table class="table table-stripped" id="tableku">
             <thead>

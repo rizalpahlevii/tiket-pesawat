@@ -16,6 +16,7 @@
             $where = ['id_customer' => $id];
             if($this->customer->delete('customer', $where) > 0){
                 $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Airline Was deleted!</div></div>');
+                $this->session->set_flashdata('berhasil','Berhasil Menghapus Customer!');
             }else{
                 $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Error!</div></div>');
             }
@@ -27,12 +28,14 @@
             if($data->status == "1"){
                 if($this->customer->update_aktif('customer',$where) > 0){
                      $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account was successfully disabled!</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Menonaktifkan Customer!');
                 }else{
                     $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account activated failed!</div></div>');       
                 }
             }else{
                 if($this->customer->update_nonaktif('customer',$where) > 0){
                     $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>account activated successfull !</div></div>');
+                    $this->session->set_flashdata('berhasil','Berhasil Mengaktifkan Customer!');
                        
                 }else{
                         $this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Failde to activate account</div></div>');       
