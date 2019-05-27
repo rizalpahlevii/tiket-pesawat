@@ -23,18 +23,31 @@
                 'kelas' => $this->input->post('kelas_penerbangan'),
                 'total_tarif' => $this->input->post('total_tarif'),
                 'status_bayar' => 'TERBAYAR',
-           ]; 
+           ];
+
            $data_detail = [
                 'id_detail' => $this->booking->buat_kode_detail(),
                 'id_tarif' => $this->input->post('id_tarif'),
                 'id_booking' => $this->input->post('id_booking')
            ];
+           
+            $id_booking = $this->input->post('id_booking');
+            $where_psw = ['booking.id_booking'=>$id_booking];
            // var_dump($data_booking);
            // var_dump($data_detail);
            if($this->booking->insert_booking($data_booking) > 0 && $this->booking->insert_detail_booking($data_detail) > 0){
                 $response = ['status' => "true"];
-                // $arraySession = ['aksesPassenger' => true];
-                // $this->session->set_userdata($arraySession);
+                // fungsi kurangi stok kursi
+                $qr_psw = $this->db->select('pesawat.*,booking.kelas,booking.id_booking')->from('pesawat')->join('penerbangan','penerbangan.id_pesawat=pesawat.id_pesawat ')->join('booking','booking.id_penerbangan=penerbangan.id_penerbangan')->where($where_psw)->get()->row_array();
+                $id_pesawat = $qr_psw['id_pesawat'];
+                if($qr_psw['kelas'] != "EKONOMI"){
+                    // BISNIS
+                    $this->db->update('pesawat',['jml_kursi_bisnis' => $qr_psw['jml_kursi_bisnis'] - $this->input->post('jml_penumpang')],['id_pesawat'=>$id_pesawat]);
+                }else{
+                    $this->db->update('pesawat',['jml_kursi_ekonomi' => $qr_psw['jml_kursi_ekonomi'] - $this->input->post('jml_penumpang')],['id_pesawat'=>$id_pesawat]);
+                }
+                // akhir kurang stok
+
                 echo json_encode($response);
            }else{
                 $response = ['status' => "false"];
