@@ -56,7 +56,7 @@
 
     <!-- Clients -->
     <div id="clients" class="parallax-container scrollspy">
-      <div class="parallax"><img src="<?= base_url('assets/fe/') ?>img/slider/4.png"></div>
+      <div class="parallax"><img src="<?= base_url('assets/landing/') ?>4.jpg"></div>
 
       <div class="container clients">
         <h3 class="center light white-text">Our Clients</h3>

@@ -10,4 +10,3 @@
             $this->template->load('frontend','frontend/landing',$data);
         }
     }
-?>
