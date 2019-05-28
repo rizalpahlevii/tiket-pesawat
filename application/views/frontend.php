@@ -12,7 +12,7 @@
     
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+    <script type="text/javascript">base_url = '<?php echo base_url(); ?>'</script>
     <title>GIGANTIC</title>
   </head>
 
@@ -21,14 +21,14 @@
     <!-- navbar -->
     <div class="navbar-fixed">
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Login</a></li>
-        <li><a href="#!">Register</a></li>
+        <li><a href="<?php echo site_url('gigantic/auth/login') ?>">Login</a></li>
+        <li><a href="<?php echo site_url('gigantic/auth/registration') ?>">Register</a></li>
       </ul>
       <ul id="dropdown2" class="dropdown-content">
         <li><a href="#!">Rizal</a></li>
         <li><a href="#!">Profile</a></li>
         <li><a href="#!">Pemesanan</a></li>
-        <li><a href="#!">Logout</a></li>
+        <li><a href="<?php echo site_url('gigantic/logout') ?>">Logout</a></li>
       </ul>
       <nav class="blue darken-2">
         <div class="container">
@@ -41,10 +41,10 @@
               <li><a href="#services">Services</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="#contact">Contact Us</a></li>
-              <?php if(!$this->session->userdata('client_login')): ?>
+              <?php if(!$this->session->userdata('giganticClientLogin') ): ?>
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">account_circle</i></a></li>
               <?php else: ?>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Rizal<i class="material-icons right">account_circle</i></a></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><i class="material-icons left">account_circle</i><?php echo $this->session->userdata('namaClient') ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
@@ -74,8 +74,12 @@
 
 
 
+    <script type="text/javascript" src="<?php echo base_url('assets/js/') ?>jquery.min.js"></script>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="<?php echo base_url('assets/fe/') ?>js/materialize.min.js"></script>
+    
+  <script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/') ?>client.js"></script>
     <script>
       const sideNav = document.querySelectorAll('.sidenav');
       M.Sidenav.init(sideNav);

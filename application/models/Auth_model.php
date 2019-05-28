@@ -9,5 +9,11 @@
             $this->db->where($where);
             return $this->db->get();
         }
+        public function getLoginCustomer($where){
+            $this->db->select('*');
+            $this->db->from('customer');
+            $this->db->where($where);
+            return $this->db->get();
+        }
     }
 ?>
