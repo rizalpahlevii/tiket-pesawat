@@ -4,6 +4,9 @@
         public function __construct(){
             parent::__construct();
         }
+        public function coba(){
+            
+        }
 
         public function index(){
             $data['page'] = 'Gigantic';
