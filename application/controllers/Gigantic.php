@@ -9,10 +9,11 @@
             $this->load->model('Auth_model','auth');
         }
         public function checkout($id){
+            $this->session->unset_userdata('cekUrlCheckout');
             $data['page'] = 'Checkout';
             if(!$this->session->userdata('giganticClientLogin')){
                 $cont = $this->uri->segment(1);
-                $met = $this->url->segment(2);
+                $met = $this->uri->segment(2);
                 $val = $this->uri->segment(3);
                 $fullUrl = $cont . '/' . $met . '/' .$val;
                 $this->session->set_userdata('cekUrlCheckout',$fullUrl);
@@ -88,7 +89,6 @@
                         if(!$this->session->userdata('cekUrlCheckout')){
                             redirect('gigantic/');   
                         }else{
-                            
                             redirect($this->session->userdata('cekUrlCheckout'));
                         }
                     }else {
