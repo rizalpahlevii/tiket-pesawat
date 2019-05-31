@@ -82,7 +82,8 @@
                         $session = [
                             'giganticClientLogin' => 'logged',
                             'namaClient' => $user['nama'],
-                            'emailClient' => $user['email']
+                            'emailClient' => $user['email'],
+                            'idClient' => $user['id_customer']
                         ];
                         $this->session->set_userdata($session);
                         $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Welcome ' . $this->session->userdata('nama') . '!</div></div>');
@@ -128,5 +129,12 @@
             session_destroy();
             $_SESSION = [];
             redirect('gigantic/');
+        }
+        public function booking($id){
+            $data['nomotDetail'] = $this->booking->buat_kode_detail();
+            $where = ['penerbangan.id_penerbangan' => $id];
+            $data['tmp'] = $this->booking->pilih_pnb2($where)->row_array();
+            $data['nomot'] = $this->booking->buat_kode();
+            $this->template->load('frontend','frontend/booking',$data);;
         }
     }

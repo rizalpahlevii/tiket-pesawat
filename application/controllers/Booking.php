@@ -14,6 +14,11 @@
             $this->template->load('template','booking/index',$data);
         }
         public function insert(){
+            if(!$this->input->post('status_bayar')){
+                $sb = "TERBAYAR";
+            }else{
+                $sb = "BOOKING";
+            }
            $data_booking = [
                 'id_booking' => $this->input->post('id_booking'),
                 'id_customer' => $this->input->post('id_customer_book'),
@@ -22,7 +27,7 @@
                 'jml_penumpang' => $this->input->post('jml_penumpang'),
                 'kelas' => $this->input->post('kelas_penerbangan'),
                 'total_tarif' => $this->input->post('total_tarif'),
-                'status_bayar' => 'TERBAYAR',
+                'status_bayar' => $sb,
            ];
 
            $data_detail = [

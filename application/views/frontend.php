@@ -36,7 +36,7 @@
             <a href="#home" class="brand-logo">GIGANTIC</a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="#about">Home</a></li>
+              <li><a href="<?php echo site_url('gigantic') ?>">Home</a></li>
               <li><a href="#clients">Clients</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#portfolio">Portfolio</a></li>

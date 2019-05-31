@@ -67,6 +67,15 @@
             $this->db->where($where);
             return $this->db->get();
         }
+        public function pilih_pnb2($where){
+            $this->db->select('penerbangan.id_penerbangan,penerbangan.tgl_penerbangan,bandara.nama_bandara,bandara.kota_bandara,bandara.kode,penerbangan.asal,penerbangan.tujuan,penerbangan.jam_berangkat,penerbangan.jam_tiba,pesawat.type_pesawat,pesawat.image,tarif_penerbangan.tarif_bisnis,tarif_penerbangan.tarif_ekonomi,pesawat.jml_kursi_ekonomi,pesawat.jml_kursi_bisnis');
+            $this->db->from('penerbangan');
+            $this->db->join('pesawat','pesawat.id_pesawat=penerbangan.id_pesawat');
+            $this->db->join('bandara','bandara.id_bandara=penerbangan.id_bandara');
+            $this->db->join('tarif_penerbangan','tarif_penerbangan.id_penerbangan=penerbangan.id_penerbangan');
+            $this->db->where($where);
+            return $this->db->get();
+        }
         public function plhcst($where){
             return $this->db->get_where('customer',$where);
         }
