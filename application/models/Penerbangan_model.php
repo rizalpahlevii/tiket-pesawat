@@ -3,7 +3,7 @@
     class Penerbangan_model extends CI_Model{
 
         public function tmp_penerbangan(){
-            $this->db->select("penerbangan.id_penerbangan, penerbangan.tgl_penerbangan, penerbangan.asal, penerbangan.tujuan, penerbangan.jam_berangkat, penerbangan.jam_tiba, pesawat.type_pesawat, bandara.kota_bandara, bandara.nama_bandara");
+            $this->db->select("penerbangan.id_penerbangan, penerbangan.tgl_penerbangan, penerbangan.asal, penerbangan.tujuan, penerbangan.jam_berangkat, penerbangan.jam_tiba, pesawat.type_pesawat,pesawat.image, bandara.kota_bandara, bandara.nama_bandara");
             $this->db->from('penerbangan');
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');

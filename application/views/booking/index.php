@@ -46,8 +46,9 @@
                             <td><?php echo $row->nama ?></td>
                             <td><?php echo $row->jml_penumpang ?></td>
                             <td><?php echo $row->total_tarif ?></td>
-                            <td><?php echo $row->status_bayar ?></td>
-                            <td></td>
+                            <td><?php echo ($row->status_bayar == "TERBAYAR") ? '<span class="badge badge-success">' . $row->status_bayar .'</span>' : '<span class="badge badge-warning">' . ( $row->status_bayar ) . '</span>';?></td>
+                            <td><?php echo ($row->status_bayar == "TERBAYAR") ? '-' : '<a href="" class="btn btn-primary">Konfirmasi</a>'; ?></td>
+
                           </tr>
                           <?php $no++;endforeach; ?>
                         </tbody>

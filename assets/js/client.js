@@ -3,6 +3,7 @@ $(document).ready(function(){
     $(document).on('click','#tmbCariPnb',function(){
         asaltujuan();
     });
+    ajaxFull();
     function asaltujuan(){
         var td  = "";
         if( $('.asalPenerbangan').val() != "" && $('.tujuanPenerbangan').val() != "" ){
@@ -106,4 +107,127 @@ $(document).ready(function(){
             }
         });
     });
+    $(document).on('change','#filter',function(){
+      value_filter = $(this).val();
+      if(value_filter == "Tanggal"){
+        $('#fasaltujuan').css({'display' : 'none'});
+        $('#fpesawat').css({'display' : 'none'});
+        $('#fbandara').css({'display' : 'none'});
+        $('#ftanggal').css({'display' : 'block'});
+      }else if(value_filter == "Asal dan Tujuan"){
+        $('#fpesawat').css({'display' : 'none'});
+        $('#fbandara').css({'display' : 'none'});
+        $('#ftanggal').css({'display' : 'none'});
+        $('#fasaltujuan').css({'display' : 'block'});
+      }else if(value_filter == "Pesawat"){
+        $('#fbandara').css({'display' : 'none'});
+        $('#ftanggal').css({'display' : 'none'});
+        $('#fasaltujuan').css({'display' : 'none'});
+        $('#fpesawat').css({'display' : 'block'});
+      }else if(value_filter == "Bandara"){
+        $('#ftanggal').css({'display' : 'none'});
+        $('#fasaltujuan').css({'display' : 'none'});
+        $('#fpesawat').css({'display' : 'none'});
+        $('#fbandara').css({'display' : 'block'});
+      }else{
+        $('#ftanggal').css({'display' : 'none'});
+        $('#fasaltujuan').css({'display' : 'none'});
+        $('#fpesawat').css({'display' : 'none'});
+        $('#fbandara').css({'display' : 'none'});
+        ajaxFull();
+      }
+    });
+    $(document).on('click','#btnClientCari',function(){
+        flt = $('#filter').val();
+        if(flt == "Tanggal"){
+            if($('#tgl_awal').val() != "" || $('#tgl_akhir').val() != ""){
+               ajaxTanggal(); 
+            }else{
+                swal('Error!','Form tidak boleh kosong!','error');
+            }       
+        }else if(flt == "Asal dan Tujuan"){
+            if($('#asal_penerbangan').val() != "" || $('#tujuan_penerbangan').val() != ""){
+                ajaxAsalTujuan();
+            }else{
+                swal('Error!','Form tidak boleh kosong!','error');
+            }
+        }else if(flt == "Pesawat"){
+            if($('#nama_pesawat').val() != ""){
+                ajaxPesawat();    
+            }else{
+                swal('Error!','Form tidak boleh kosong!','error');
+            }
+        }else if(flt == "Bandara"){
+            if($('#nama_bandara').val() != ""){
+                ajaxBandara();
+            }else{
+                swal('Error!','Form tidak boleh kosong!','error');
+            }
+        }else{
+            ajaxFull();
+        }
+    });
+    function ajaxFull(){
+        $.ajax({
+            url : base_url + 'gigantic/ajxpnb/full',
+            method : 'POST',
+            data : {
+              cek : 'ok'
+            },
+            success:function(data){
+              $('#tblout').html(data);
+            }
+        });
+    }
+
+    function ajaxTanggal(){
+      $.ajax({
+        url : base_url + 'gigantic/ajxpnb/Tanggal',
+        method : 'POST',
+        data : {
+          tgl_awal : $('#tgl_awal').val(),
+          tgl_akhir :$('#tgl_akhir').val()
+        },
+        success:function(data){
+          $('#tblout').html(data);
+        }
+      });
+    }
+    function ajaxAsalTujuan(){
+      $.ajax({
+        url : base_url + 'gigantic/ajxpnb/asaltujuan',
+        method : 'POST',
+        data : {
+          asal : $('#asal_penerbangan').val(),
+          tujuan :$('#tujuan_penerbangan').val()
+        },
+        success:function(data){
+          $('#tblout').html(data);
+        }
+      });
+    }
+    function ajaxBandara(){
+      $.ajax({
+        url : base_url + 'gigantic/ajxpnb/Bandara',
+        method : 'POST',
+        data : {
+          nama_bandara : $('#nama_bandara').val()
+        },
+        success:function(data){
+          $('#tblout').html(data);
+        }
+      });
+    }
+    function ajaxPesawat(){
+      $.ajax({
+        url : base_url + 'gigantic/ajxpnb/Pesawat',
+        method : 'POST',
+        data : {
+          nama_pesawat : $('#nama_pesawat').val()
+        },
+        success:function(data){
+          $('#tblout').html(data);
+        }
+      });
+    }
 });

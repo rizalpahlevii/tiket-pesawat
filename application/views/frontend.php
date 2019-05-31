@@ -10,6 +10,7 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/fe/') ?>css/style.css">
     
+    <script type="text/javascript" src="<?php echo base_url('assets/js/') ?>jquery.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript">base_url = '<?php echo base_url(); ?>'</script>
@@ -25,9 +26,8 @@
         <li><a href="<?php echo site_url('gigantic/auth/registration') ?>">Register</a></li>
       </ul>
       <ul id="dropdown2" class="dropdown-content">
-        <li><a href="#!">Rizal</a></li>
-        <li><a href="#!">Profile</a></li>
-        <li><a href="#!">Pemesanan</a></li>
+        <li><a href="<?php echo site_url('gigantic/profile') ?>">Profile</a></li>
+        <li><a href="<?php echo site_url('gigantic/pemesanan') ?>">Pemesanan</a></li>
         <li><a href="<?php echo site_url('gigantic/logout') ?>">Logout</a></li>
       </ul>
       <nav class="blue darken-2">
@@ -37,10 +37,9 @@
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li><a href="<?php echo site_url('gigantic') ?>">Home</a></li>
-              <li><a href="#clients">Clients</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="<?php echo site_url('gigantic/penerbangan') ?>">Penerbangan</a></li>
+              <li><a href="<?php echo site_url('gigantic/services') ?>">Services</a></li>
+              <li><a href="<?php echo site_url('gigantic/contact') ?>">Contact Us</a></li>
               <?php if(!$this->session->userdata('giganticClientLogin') ): ?>
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">account_circle</i></a></li>
               <?php else: ?>
@@ -54,11 +53,10 @@
 
     <!-- sidenav -->
     <ul class="sidenav" id="mobile-nav">
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact Us</a></li>
+       <li><a href="<?php echo site_url('gigantic') ?>">Home</a></li>
+        <li><a href="<?php echo site_url('gigantic/penerbangan') ?>">Penerbangan</a></li>
+        <li><a href="<?php echo site_url('gigantic/services') ?>">Services</a></li>
+        <li><a href="<?php echo site_url('gigantic/contact') ?>">Contact Us</a></li>
       <li><a href="#contact"><i class="material-icons right">account_circle</i>Rizal</a></li>
 
     </ul>
@@ -69,7 +67,12 @@
 
     <!-- footer -->
     <footer class="blue darken-2 white-text center">
-      <p class="flow-text">GIGANTIC Copyright <?php echo date('Y') ?></p>
+      <div class="footer-copyright">
+            <div class="container">
+              
+      <p>GIGANTIC Copyright <?php echo date('Y') ?></p>
+            </div>
+          </div>
     </footer>
 
 

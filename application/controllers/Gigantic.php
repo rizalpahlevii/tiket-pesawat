@@ -7,6 +7,8 @@
             $this->load->library('form_validation');
             $this->load->model('Customer_model','customer');
             $this->load->model('Auth_model','auth');
+            $this->load->model('Penerbangan_model','penerbangan');
+            $this->load->model('Frontend_model','fe');
         }
         public function checkout($id){
             $this->session->unset_userdata('cekUrlCheckout');
@@ -136,5 +138,39 @@
             $data['tmp'] = $this->booking->pilih_pnb2($where)->row_array();
             $data['nomot'] = $this->booking->buat_kode();
             $this->template->load('frontend','frontend/booking',$data);;
+        }
+        public function penerbangan(){
+            $data['tmp'] = $this->penerbangan->tmp_penerbangan();
+            $this->template->load('frontend','frontend/penerbangan',$data);
+        }
+        public function ajxpnb($filter){
+            if($filter == "Tanggal"){
+                $where = [
+                    'penerbangan.tgl_penerbangan >=' => $this->input->post('tgl_awal'),
+                    'penerbangan.tgl_penerbangan <=' => $this->input->post('tgl_akhir')
+                ];
+                $data['tmp'] = $this->fe->tampilPnbTanggal($where);
+            }elseif ($filter == "asaltujuan") {
+                $where1 = [
+                    'penerbangan.asal' => $this->input->post('asal')
+                ];
+                $where2 = [
+                    'penerbangan.tujuan' => $this->input->post('tujuan')
+                ];
+                $data['tmp'] = $this->fe->tampilPnbAsalTujuan($where1,$where2);
+            }elseif ($filter == "Bandara") {
+               $where = [
+                    'Bandara.nama_bandara' => $this->input->post('nama_bandara')
+               ];
+               $data['tmp'] = $this->fe->tampilPnbBandara($where);
+            }elseif ($filter == "Pesawat") {
+                 $where = [
+                    'pesawat.type_pesawat' => $this->input->post('nama_pesawat')
+               ];
+               $data['tmp'] = $this->fe->tampilPnbPesawat($where);
+            }else{
+                $data['tmp'] = $this->fe->tampilPnb();
+            }
+            $this->load->view('frontend/tblPnb',$data);
         }
     }
