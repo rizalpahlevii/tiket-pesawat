@@ -9,16 +9,11 @@
             $this->load->model('Auth_model','auth');
             $this->load->model('Penerbangan_model','penerbangan');
             $this->load->model('Frontend_model','fe');
+            $this->load->model('Passenger_model','passenger');
         }
         public function checkout($id){
-            $this->session->unset_userdata('cekUrlCheckout');
             $data['page'] = 'Checkout';
             if(!$this->session->userdata('giganticClientLogin')){
-                $cont = $this->uri->segment(1);
-                $met = $this->uri->segment(2);
-                $val = $this->uri->segment(3);
-                $fullUrl = $cont . '/' . $met . '/' .$val;
-                $this->session->set_userdata('cekUrlCheckout',$fullUrl);
                 redirect('gigantic/auth/login');
             }else{
                 $this->template->load('frontend','checkout',$data);
@@ -60,7 +55,6 @@
         }
 
         public function index(){
-            $this->session->unset_userdata('cekUrlCheckout');
             $data['page'] = 'Gigantic';
             $this->template->load('frontend','frontend/landing',$data);
         }
@@ -133,11 +127,15 @@
             redirect('gigantic/');
         }
         public function booking($id){
-            $data['nomotDetail'] = $this->booking->buat_kode_detail();
-            $where = ['penerbangan.id_penerbangan' => $id];
-            $data['tmp'] = $this->booking->pilih_pnb2($where)->row_array();
-            $data['nomot'] = $this->booking->buat_kode();
-            $this->template->load('frontend','frontend/booking',$data);;
+            if(!$this->session->userdata('giganticClientLogin')){
+                redirect('gigantic/auth/login');
+            }else{
+                $data['nomotDetail'] = $this->booking->buat_kode_detail();
+                $where = ['penerbangan.id_penerbangan' => $id];
+                $data['tmp'] = $this->booking->pilih_pnb2($where)->row_array();
+                $data['nomot'] = $this->booking->buat_kode();
+                $this->template->load('frontend','frontend/booking',$data);    
+            }
         }
         public function penerbangan(){
             $data['tmp'] = $this->penerbangan->tmp_penerbangan();
@@ -172,5 +170,25 @@
                 $data['tmp'] = $this->fe->tampilPnb();
             }
             $this->load->view('frontend/tblPnb',$data);
+        }
+        public function passenger($id){
+          $where = ['detail_booking.id_detail' => $id];
+            $data['page'] = 'Detail Passenger';
+            $data['tmp'] = $this->passenger->c_detail($where)->row_array();
+            if ($data['tmp']['kelas'] != "EKONOMI") {
+                    // bisnis
+                $whereKursiTwo = [
+                    'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
+                ];
+                $data['no_kursi'] = $this->passenger->kode_bisnis($whereKursiTwo);
+            }else{
+                    // ekonomi
+                $whereKursiTwo = [
+                    'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
+                ];
+                $data['no_kursi'] = $this->passenger->kode_ekonomi($whereKursiTwo);
+            }
+            $data['jml'] = $data['tmp']['jml_penumpang'];
+            $this->template->load('frontend','frontend/passenger',$data);  
         }
     }

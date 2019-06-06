@@ -58,7 +58,6 @@ $(document).ready(function(){
     $(document).on('change','#kelas_penerbangan',function(){
         kelas = $(this).val();
         id_penerbangan = $('#id_penerbangan').val();
-        console.log(id_penerbangan);
         $.ajax({
             url : base_url + 'booking/optkelas',
             method : 'POST',
@@ -79,7 +78,7 @@ $(document).ready(function(){
             }
         });
     });
-    $(document).on('keyup','#jumlah_penumpang',function(e){
+    $(document).on('keyup','#jumlah_penumpang',function(){
         jml = $('#jumlah_penumpang').val();
         trf = $('#tarif_per_kursi').val();
         $('#total_tarif').val(parseInt(jml)*parseInt(trf));
@@ -103,7 +102,13 @@ $(document).ready(function(){
                 status_bayar : $('#status_bayar').val()
             },
             success:function(response){
-                swal('Done!','Booking Selesai!','success');
+                conv = JSON.parse(response);
+                if(conv.status != false){
+                    swal('Done!','Booking Selesai!','success').then(function(){
+                        window.location.href = base_url + 'gigantic/passenger/'+$('#id_detail').val();
+                    });    
+                }else
+                    swal('Error!','Gagal!','Error');
             }
         });
     });
