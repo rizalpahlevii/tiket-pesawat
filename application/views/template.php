@@ -120,7 +120,6 @@
   <script src="<?php echo base_url(); ?>assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/stisla.js"></script>
-  <script src="<?php echo base_url('assets/') ?>js/stisla.js"></script>
 
   <!-- JS Libraies -->
   <script src="<?php echo base_url('assets/') ?>modules/simple-weather/jquery.simpleWeather.min.js"></script>

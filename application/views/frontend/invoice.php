@@ -115,7 +115,7 @@
                             </td>
                             
                             <td>
-                                Invoice #: <?php echo $row->id_penerbangan ?><br>
+                                Invoice #: <?php echo $row->id_booking ?><br>
                                 Created: <?php echo $row->tgl_booking ?><br>
                             </td>
                         </tr>
@@ -128,6 +128,8 @@
                     <table>
                         <tr>
                             <td>
+                                <b>No Penerbangan :</b><br>
+                                <?php echo $row->id_penerbangan ?><br>
                                 <b>Nama Pesawat :</b><br>
                                 <?php echo $row->type_pesawat ?><br>
                                 <b>Nama Bandara :</b><br>
@@ -204,6 +206,54 @@
            </tr>
             <?php endforeach; ?>
         </table>
+        <h5>Detail Harga</h5>
+        <table>
+            <tr class="ok" >
+                <th>
+                    Kelas Penerbangan
+                </th>
+                <th></th>
+                <th></th>
+                 <th></th>
+                <th>
+                   <?=  ($hrg['kelas']!= "EKONOMI") ? "BISNIS" : "EKONOMI"; ?>
+                </th>
+            </tr>
+            <tr class="ok" >
+                <th>
+                    Tarif Per Kursi
+                </th>
+                <th></th>
+                <th></th>
+                 <th></th>
+                <th>
+                   <?=  ($hrg['kelas'] != "EKONOMI") ? $hrg['tarif_bisnis'] : $hrg['tarif_bisnis']; ?>
+                </th>
+            </tr>
+            <tr class="ok" >
+                <th>
+                    Jumlah Penumpang
+                </th>
+                <th></th>
+                <th></th>
+                 <th></th>
+                <th>
+                   <?=  $hrg['jml_penumpang'] ?> Orang
+                </th>
+            </tr>
+            <tr class="ok" >
+                <th>
+                   Total Tarif
+                </th>
+                <th></th>
+                <th></th>
+                 <th></th>
+                <th>
+                   <?=  $hrg['total_tarif'] ?>
+                </th>
+            </tr>
+        </table>
+        <p><b>  Catatan</b>  : Screenshot bukti pemesanan ini atau langsung tunjukkan ke petugas bandara 30 menit sebelum perjalan</p>
         <?php endif; ?>
     </div>
 </body>

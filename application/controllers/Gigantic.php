@@ -218,6 +218,8 @@
                 // tidak ada pesanan
                 $data['penumpang'] = "Tidak Ada Pesanan";
             }else{
+                $id_detail = $data['row']->id_detail;
+                $data['hrg']=$this->passenger->c_detail(['detail_booking.id_detail'=>$id_detail])->row_array();
                 $id_penerbangan = $data['row']->id_penerbangan;
                 $email = $data['row']->email;
                 $data['penumpang'] = $this->passenger->getPenumpangidpidc($id_penerbangan,$whereIdClient)->result();    

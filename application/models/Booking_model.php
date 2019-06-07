@@ -79,5 +79,23 @@
         public function plhcst($where){
             return $this->db->get_where('customer',$where);
         }
+        public function ctk_konfirmasi($where){
+            $this->db->select('booking.*,penerbangan.id_penerbangan,penerbangan.tgl_penerbangan,penerbangan.asal,penerbangan.tujuan,penerbangan.jam_berangkat,penerbangan.jam_tiba,pesawat.type_pesawat,bandara.*,tarif_penerbangan.* , customer.nama,customer.email,customer.negara,customer.id_customer,customer.kota,detail_booking.id_detail');
+            $this->db->from('penerbangan');
+            $this->db->join('booking','booking.id_penerbangan=penerbangan.id_penerbangan');
+            $this->db->join('detail_booking','detail_booking.id_booking=booking.id_booking');
+            $this->db->join('tarif_penerbangan','tarif_penerbangan.id_tarif=detail_booking.id_tarif');
+            $this->db->join('bandara','penerbangan.id_bandara=bandara.id_bandara');
+            $this->db->join('pesawat',' pesawat.id_pesawat=penerbangan.id_pesawat');
+            $this->db->join('customer','customer.id_customer=booking.id_customer');
+            $this->db->where($where);
+            return $this->db->get();
+        }
+        public function updateStatusBayar($data,$where){
+            $this->db->set($data);
+            $this->db->where($where);
+            $this->db->update('booking');
+            return $this->db->affected_rows();
+        }
     }
 ?>

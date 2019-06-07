@@ -434,4 +434,87 @@ $(document).ready(function(){
         var id_detail = $('#id_detail').val();
         window.open(base_url + 'passenger/tiket/'+id_detail);
     });
+    $(document).on('click','#btn-konfirmasi',function(){
+        var html = '';
+        $.ajax({
+            url : base_url + 'booking/konfirmasi',
+            method : 'POST',
+            dataType: 'json',
+            data: {
+                id_booking : $(this).data('kode')
+            },
+            success:function(res){
+                $('#id_penerbangan').html(res.tmp.id_penerbangan);
+                $('#asal').html(res.tmp.asal);
+                $('#tujuan').html(res.tmp.tujuan);
+                $('#kota').html(res.tmp.kota_bandara);
+                $('#tgl').html(res.tmp.tgl_penerbangan);
+                $('#nama_pesawat').html(res.tmp.type_pesawat);
+                $('#nama_bandara').html(res.tmp.nama_bandara);
+                $('#jam_berangkat').html(res.tmp.jam_berangkat);
+                $('#jam_tiba').html(res.tmp.jam_tiba);
+                $('#tgl-booking').html(res.tmp.tgl_booking);
+                $('#idcus').html(res.tmp.id_customer);
+                $('#namacus').html(res.tmp.nama);
+                $('#id_booking_input').val(res.tmp.id_booking)
+                $('#emailcus').html(res.tmp.email);
+                $('#negaracus').html(res.tmp.negara);
+                $('#kotacus').html(res.tmp.kota);
+                $.each(res.penumpang, function(i,data){
+                    html += `<tr>
+                                <td>`+res.penumpang[i].nama_passenger+`</td>
+                                <td>`+res.penumpang[i].umur+`</td>
+                                <td>`+res.penumpang[i].nomor_kursi+`</td>
+                            </tr>`
+                });
+                $('#loadPnp').html(html);
+                hrg = res.hrg;
+                if(hrg.kelas != "EKONOMI"){
+                    $('#klsp').html(hrg.kelas);
+                    $('#jmlpnp').html(hrg.jml_penumpang);
+                    $('#ttltrf').html('<b>'+hrg.total_tarif+'</b>');
+                    $('#pkursi').html(hrg.tarif_bisnis);
+                }else{
+                    $('#klsp').html(hrg.kelas);
+                    $('#jmlpnp').html(hrg.jml_penumpang);
+                    $('#ttltrf').html(hrg.total_tarif);
+                    $('#pkursi').html(hrg.tarif_ekonomi);
+                }
+            }
+        });
+    });
+    $(document).on('click','#btn-konfirmasi-submit',function(){
+        // $('.bd-example-modal-lg').modal('hide');
+        dkod = $('#id_booking_input').val();
+        nama = $('#namacus').html();
+        swal({
+              title: 'Apakah Anda Yakin?',
+              text: 'Konfirmasi Booking '+ nama,
+              icon: 'warning',
+              buttons: true,
+              dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url : base_url + 'booking/savekonfirm',
+                    method :'POST',
+                    data : {
+                        id : dkod
+                    },success:function(response){
+                        if(response!="gagal"){
+                            swal('Done!','Konfirmasi Berhasil!','success')
+                            .then(function(){
+                                location.reload();
+                                window.open(base_url+'booking/invoice/'+dkod);
+                            });    
+                        }else{
+                            swal('Error!','Konfirmasi gagal!','error');
+                        }
+                    }
+                });
+            } else {
+                swal('Your imaginary file is safe!');
+            }
+        });
+    });
 });

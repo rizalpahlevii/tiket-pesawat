@@ -32,14 +32,14 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label>Flight</label>
+                    <label>No Penerbangan</label>
                     <p><?php echo $data->id_penerbangan ?></p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label>Gate</label>
-                    <p>TIMUR</p>
+                    <label>Airport</label>
+                    <p><?php echo $data->nama_bandara ?></p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -83,7 +83,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Flight</label>
-                    <p><?php echo $data->id_penerbangan ?></p>
+                    <p><?php echo $data->type_pesawat ?></p>
                 </div>
             </div>
             <div class="col-sm-6">

@@ -47,7 +47,7 @@
                             <td><?php echo $row->jml_penumpang ?></td>
                             <td><?php echo $row->total_tarif ?></td>
                             <td><?php echo ($row->status_bayar == "TERBAYAR") ? '<span class="badge badge-success">' . $row->status_bayar .'</span>' : '<span class="badge badge-warning">' . ( $row->status_bayar ) . '</span>';?></td>
-                            <td><?php echo ($row->status_bayar == "TERBAYAR") ? '-' : '<a href="" class="btn btn-primary">Konfirmasi</a>'; ?></td>
+                            <td><?php echo ($row->status_bayar == "TERBAYAR") ? '-' : '<button type="button" class="btn btn-primary mb-3" id="btn-konfirmasi" data-toggle="modal" data-target=".bd-example-modal-lg" data-kode="'. $row->id_booking .'">Konfirmasi</button>'; ?></td>
 
                           </tr>
                           <?php $no++;endforeach; ?>
@@ -60,6 +60,162 @@
             </div>
           </div>
         </section>
+
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Detail Booking</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="invoice">
+              <div class="invoice-print">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <address>
+                          <strong>ID Penerbangan:</strong><br>
+                            <p id="id_penerbangan">Ujang Maman </p>
+                        </address>
+                        <address>
+                          <strong>Asal Penerbangan:</strong><br>
+                            <p id="asal">Ujang Maman </p>
+                        </address>
+                        <address>
+                          <strong>Kota Bandara:</strong><br>
+                            <p id="kota">Ujang Maman </p>
+                        </address>
+                      </div>
+                      <div class="col-md-6 text-md-right"><address>
+                        <strong>Tanggal Penerbangan:</strong><br>
+                          <p id="tgl"></p>
+                        </address>
+                        <address>
+                          <strong>Tujuan Penerbangan:</strong><br>
+                          <p id="tujuan"></p>
+                        </address>
+                        <address>
+                          <strong>Tanggal Booking:</strong><br>
+                          <p id="tgl-booking"></p>
+                        </address>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <address>
+                          <strong>Nama Pesawat:</strong><br>
+                          <p id="nama_pesawat"></p>
+                        </address>
+                        <address>
+                          <strong>Nama Bandara:</strong><br>
+                          <p id="nama_bandara"></p>
+                        </address>
+                      </div>
+                      <div class="col-md-6 text-md-right">
+                        <address>
+                          <strong>Jam Keberangkatan:</strong><br>
+                          <p id="jam_berangkat"></p>
+                        </address>
+                        <address>
+                          <strong>Jam Tiba:</strong><br>
+                          <p id="jam_tiba"></p>
+                        </address>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+              
+              <div class="modal-body">
+                
+                <div class="row">
+                  <h5 class="text-center">Data Customer</h5>
+                  <div class="col-sm-12">
+                    <table class="table table-stripped">
+                      <thead>
+                        <tr>
+                          <th>ID Customer</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Negara</th>
+                          <th>Kota</th>
+                        </tr>  
+                      </thead>
+                      
+                      <tbody id="loadCst">
+                        <td id="idcus"></td>
+                        <td id="namacus"></td>
+                        <td id="emailcus"></td>
+                        <td id="negaracus"></td>
+                        <td id="kotacus"></td>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>   
+                <div class="row">
+                  <h5 class="text-center">Data Penumpang</h5>
+                  <div class="col-sm-12">
+                    <table class="table table-stripped">
+                      <thead>
+                        <tr>
+                          <th>Nama Penumpang</th>
+                          <th>Umur</th>
+                          <th>No Kursi</th>
+                        </tr>  
+                      </thead>
+                      
+                      <tbody id="loadPnp">
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <h5 class="text-center">Data Harga</h5>
+                  <div class="col-sm-12">
+                     <table class="table table-striped table-hover table-md">
+                          <tr>
+                            <td>Kelas Penerbanagan</td>
+                            <td></td>
+                            <td id="klsp"><b><center>2 Orang</center></b></td>
+                          </tr>
+                          <tr>
+                            <td>Tarif Per Kursi</td>
+                            <td></td>
+                            <td id="pkursi"><b><center>2 Orang</center></b></td>
+                          </tr>
+                          <tr>
+                            <td>Jumlah Penumpang</td>
+                            <td></td>
+                            <td id="jmlpnp"><b><center>2 Orang</center></b></td>
+                          </tr>
+                          <tr>
+                            <td>Total Tarif</td>
+                            <td></td>
+                            <td id="ttltrf"><b><center>IDR 2,000,000</center></b></td>
+                          </tr>
+                      </table>
+
+                  </div>
+                </div>   
+              </div>
+            </div>
+              <div class="modal-footer">
+                <input type="hidden" name="id_booking_input" id="id_booking_input">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-konfirmasi-submit">Konfirmasi</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 

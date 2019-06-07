@@ -4,6 +4,7 @@
         public function __construct(){
             parent::__construct();
             $this->load->model('Booking_model','booking');
+            $this->load->model('Passenger_model','passenger');
 
         }
 
@@ -91,6 +92,32 @@
             $where = ['id_penerbangan' => $this->input->post('id_penerbangan')];
             $qr = $this->db->get_where('tarif_penerbangan',$where)->row();
             echo json_encode($qr);
+        }
+        public function konfirmasi(){
+            $id_booking = $this->input->post('id_booking');
+            $data['tmp'] = $this->booking->ctk_konfirmasi(['booking.id_booking' => $id_booking])->row_array();
+            $data['penumpang'] = $this->passenger->getPenumpangidpidc($data['tmp']['id_penerbangan'],$data['tmp']['id_customer'])->result();
+            $data['hrg']=$this->passenger->c_detail(['detail_booking.id_detail'=>$data['tmp']['id_detail']])->row_array(); 
+            echo json_encode($data);
+        }
+        public function savekonfirm(){
+            $data=[
+                'status_bayar' => 'TERBAYAR'
+            ];
+            $where = ['id_booking'=>$this->input->post('id')];
+            if($this->booking->updateStatusBayar($data,$where) > 0){
+                $res = "berhasil";
+                echo json_encode($res);
+            }else{
+                $res = "gagal";
+                echo json_encode($res);
+            }
+        }
+        public function invoice($id){
+            $where = ['booking.id_booking' => $id];
+            $data['tmp'] = $this->passenger->c_tiketClient($where)->result();
+            $data['item'] = $data['tmp'];
+            $this->load->view('passenger/tiket2',$data);
         }
     }
 ?>
