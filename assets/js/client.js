@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    const flashData = $('.flash-data').data('flashdata');
+    if(flashData){
+        swal('Done!',flashData,'success');
+    }
     $('#tblTampilPnb').hide();
     $(document).on('click','#tmbCariPnb',function(){
         asaltujuan();

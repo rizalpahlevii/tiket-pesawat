@@ -18,7 +18,7 @@
   </head>
 
   <body id="home" class="scrollspy">
-
+    <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('bkgb'); ?>"></div>
     <!-- navbar -->
     <div class="navbar-fixed">
       <ul id="dropdown1" class="dropdown-content">
@@ -27,7 +27,7 @@
       </ul>
       <ul id="dropdown2" class="dropdown-content">
         <li><a href="<?php echo site_url('gigantic/profile') ?>">Profile</a></li>
-        <li><a href="<?php echo site_url('gigantic/pemesanan') ?>">Pemesanan</a></li>
+        <li><a href="<?php echo site_url('gigantic/pemesanan') ?>">Pemesanan Saya</a></li>
         <li><a href="<?php echo site_url('gigantic/logout') ?>">Logout</a></li>
       </ul>
       <nav class="blue darken-2">

@@ -28,7 +28,7 @@
                             <td><?php echo $row->nama_bandara ?></td>
                             <td><?php echo $row->kota_bandara ?></td>
                             <td>
-                              <button class="btn btn-success">Detail</button>
+                              <a href="<?php echo site_url('gigantic/booking/'.$row->id_penerbangan); ?>" class="btn btn-success">Booking</a>
                             </td>
                           </tr>
                           <?php $no++;endforeach; ?>

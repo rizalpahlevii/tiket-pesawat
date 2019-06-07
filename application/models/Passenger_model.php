@@ -78,5 +78,11 @@
             $kodejadi  = "EKO" . $kodemax;
             return $kodejadi;
         }
+        public function cetak_invoice_bukti($where){
+            return $this->db->query("SELECT customer.*, penerbangan.*,tarif_penerbangan.tarif_bisnis,tarif_penerbangan.tarif_ekonomi,pesawat.*,booking.*, bandara.* FROM penerbangan INNER JOIN booking ON booking.id_penerbangan=penerbangan.id_penerbangan INNER JOIN detail_booking ON detail_booking.id_booking = booking.id_booking INNER JOIN tarif_penerbangan ON tarif_penerbangan.id_penerbangan=penerbangan.id_penerbangan INNER JOIN customer ON booking.id_customer=customer.id_customer INNER JOIN bandara ON bandara.id_bandara=penerbangan.id_bandara INNER JOIN pesawat ON pesawat.id_pesawat=penerbangan.id_pesawat WHERE booking.id_customer = '$where'");
+        }
+        public function getPenumpangidpidc($idp,$idc){
+            return $this->db->query("SELECT passenger.* FROM passenger INNER JOIN detail_booking ON detail_booking.id_detail=passenger.id_detail INNER JOIN booking ON booking.id_booking=detail_booking.id_booking INNER JOIN penerbangan on penerbangan.id_penerbangan=booking.id_penerbangan INNER JOIN customer on customer.id_customer = booking.id_customer WHERE penerbangan.id_penerbangan ='$idp' AND booking.id_customer='$idc'");
+        }
     }
 ?>

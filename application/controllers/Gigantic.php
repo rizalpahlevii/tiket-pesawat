@@ -141,6 +141,7 @@
             $data['tmp'] = $this->penerbangan->tmp_penerbangan();
             $this->template->load('frontend','frontend/penerbangan',$data);
         }
+        // fungsi ajax filter penerbangan
         public function ajxpnb($filter){
             if($filter == "Tanggal"){
                 $where = [
@@ -171,6 +172,7 @@
             }
             $this->load->view('frontend/tblPnb',$data);
         }
+        // menampilka detail penerbangan dan customer
         public function passenger($id){
           $where = ['detail_booking.id_detail' => $id];
             $data['page'] = 'Detail Passenger';
@@ -191,4 +193,37 @@
             $data['jml'] = $data['tmp']['jml_penumpang'];
             $this->template->load('frontend','frontend/passenger',$data);  
         }
+        // menyimpan dta penumpang client
+        public function savepenumpang(){
+             $limit = $this->input->post('limit');
+            for ($i=0; $i < $limit; $i++) { 
+                $data = [
+                    'id_detail'=> $this->input->post('id_detail'),
+                    'id_penerbangan'=> $this->input->post('id_penerbangan'),
+                    'nama_passenger'=> $this->input->post('nama_penumpang')[$i],
+                    'umur'=> $this->input->post('umur')[$i],
+                    'nomor_kursi'=> $this->input->post('no_kursi')[$i]
+                ];
+                $this->db->insert('passenger',$data);
+            }
+            $this->session->set_flashdata('bkgb','Booking Berhasil!,Silahkan cek di menu pemesanan!');
+                // redirect('passenger/tiket/'.$this->input->post('id_detail'));
+            redirect('gigantic/');
+        }
+        public function pemesanan(){
+            $data['page']='Pemesanan Saya';
+            $whereIdClient = $this->session->userdata('idClient');
+            $data['row'] = $this->passenger->cetak_invoice_bukti($whereIdClient)->row();
+            if($data['row'] == null){
+                // tidak ada pesanan
+                $data['penumpang'] = "Tidak Ada Pesanan";
+            }else{
+                $id_penerbangan = $data['row']->id_penerbangan;
+                $email = $data['row']->email;
+                $data['penumpang'] = $this->passenger->getPenumpangidpidc($id_penerbangan,$whereIdClient)->result();    
+            }
+            
+            $this->template->load('frontend','frontend/invoice',$data);
+        }
+
     }

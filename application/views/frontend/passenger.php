@@ -64,7 +64,7 @@
               <h6 class="center light grey-text text-darken-3">Detail Penumpang <?php echo 1+$i; ?></h6>
                  <div class="input-field">
                   <i class="material-icons prefix">account_circle</i>
-                  <input id="icon_prefix" type="text" name="nama_penumpang<?=$i?>">
+                  <input id="icon_prefix" type="text" name="nama_penumpang[]">
                   <label for="icon_prefix">Nama Penumpang</label>
                 </div>
                 <div class="input-field">
@@ -79,21 +79,11 @@
                 </div>
               </div>
             <?php endfor; ?>
-            <button class="waves-effect waves-light btn" id="btn-save-penumpang" type="button"><i class="material-icons left">save</i>Simpan</button>
+            
+          </div>
+          <div class="row">
+            <button class="waves-effect waves-light btn" id="btn-save-penumpang" type="submit"><i class="material-icons left">save</i>Simpan</button>
           </div>
         </form>
       </div>
     </section>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#btn-save-penumpang').click(function(){
-      jml = $('#limit').val();
-      var name=[];
-      for (var   i = 0; i < jml; i++) {
-        name = $("input[name=nama_penumpang"+ i +"]").val();
-      
-      }
-      console.log(name);
-    })
-  });
-</script>

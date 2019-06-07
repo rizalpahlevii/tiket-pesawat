@@ -3,17 +3,18 @@
     class Booking extends CI_Controller{
         public function __construct(){
             parent::__construct();
-            cekAkses();
             $this->load->model('Booking_model','booking');
 
         }
 
         public function index(){
+            cekAkses();
             $data['page'] = 'Booking';
             $data['booking'] = $this->booking->tmp_booking()->result();
             $this->template->load('template','booking/index',$data);
         }
         public function insert(){
+            cekAkses();
             if(!$this->input->post('status_bayar')){
                 $sb = "TERBAYAR";
             }else{
@@ -60,6 +61,7 @@
            }
         }
         public function create(){
+            cekAkses();
             $data['nomotDetail'] = $this->booking->buat_kode_detail();
             $data['nomot'] = $this->booking->buat_kode();
             $data['customers'] = $this->db->get('customer')->result();
@@ -67,17 +69,20 @@
             $this->template->load('template','booking/create',$data);
         }
         public function caripnb(){
+            cekAkses();
             $asal = $this->input->post('asal');
             $tujuan = $this->input->post('tujuan');
             $qr = $this->booking->cari_form($asal,$tujuan)->result_array();
             echo json_encode($qr);
         }
         public function pilihpnb(){
+            cekAkses();
             $where = ['penerbangan.id_penerbangan' => $this->input->post('id')];
             $qr = $this->booking->pilih_pnb($where)->row();
             echo json_encode($qr);
         }
         public function plhcst(){
+            cekAkses();
             $where = ['id_customer' => $this->input->post('id')];
             $data = $this->booking->plhcst($where)->row();
             echo json_encode($data);
