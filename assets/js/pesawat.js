@@ -528,43 +528,5 @@ $(document).ready(function(){
         });
     });
     // cart
-        $.ajax({
-            url : base_url + 'dashboard/getChart',
-            method : 'POST',
-            dataType : 'json',
-            data :{
-                id : 'oke'
-            },
-            success:function(response){
-                console.log(response);
-                new Highcharts.Chart({
-                    chart : {
-                        renderTo : 'chart',
-                        type : 'line'
-                    },
-                    title : {
-                        text : 'Grafik Penjualan Tiket',
-                        x : -20
-                    },
-                    subtitle : {
-                        text : 'Count Tiket',
-                        x:-20
-                    },
-                    xAxis : {
-                        categories : [
-                            'Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'
-                        ]
-                    },
-                    yAxis:{
-                        title :{
-                            text : 'total pembeli'
-                        }
-                    },
-                    series: [{
-                        name : 'Data Dalam Bulan',
-                        data : response
-                    }]
-                });
-            }
-        });
+    
 });

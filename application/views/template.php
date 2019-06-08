@@ -129,10 +129,12 @@
 <!-- <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
  -->
   <!-- Page Specific JS File -->
-  <?php if($this->uri->segment(1) == "dashboard" OR $this->uri->segment(1) == "") : ?>
+  <?php if($this->uri->segment(1) == "dashboard" OR $this->uri->segment(1) == "dashboard") : ?>
   <script src="<?php echo base_url(); ?>assets/modules/highchart/code/highcharts.js"></script>
+  <script src="<?php echo base_url(); ?>assets/modules/highchart/code/highcharts-more.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/highchart/code/modules/exporting.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/highchart/code/modules/offline-exporting.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/myscript_highcharts.js"></script>
   <?php else: ?>
   <?php endif; ?>
   <script src="<?php echo base_url('assets/') ?>modules/jqvmap/dist/jquery.vmap.js"></script>
