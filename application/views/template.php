@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title><?php echo $page; ?> | Gigantic Airport</title>
+  <title><?php echo $page; ?> | Airport</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
@@ -19,6 +19,9 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/style.css">
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/components.css">
+
+  <script src="<?php echo base_url()  ?>assets/js/jquery.min.js"></script>
+  
   <script type="text/javascript">
     var base_url = '<?php echo base_url(); ?>';
   </script>
@@ -123,11 +126,13 @@
 
   <!-- JS Libraies -->
   <script src="<?php echo base_url('assets/') ?>modules/simple-weather/jquery.simpleWeather.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
-
+<!-- <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
+ -->
   <!-- Page Specific JS File -->
   <?php if($this->uri->segment(1) == "dashboard" OR $this->uri->segment(1) == "") : ?>
-  <script src="<?php echo base_url(); ?>assets/js/page/modules-chartjs.js"></script>
+  <script src="<?php echo base_url(); ?>assets/modules/highchart/code/highcharts.js"></script>
+  <script src="<?php echo base_url(); ?>assets/modules/highchart/code/modules/exporting.js"></script>
+  <script src="<?php echo base_url(); ?>assets/modules/highchart/code/modules/offline-exporting.js"></script>
   <?php else: ?>
   <?php endif; ?>
   <script src="<?php echo base_url('assets/') ?>modules/jqvmap/dist/jquery.vmap.js"></script>

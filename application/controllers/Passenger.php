@@ -49,7 +49,7 @@
                     ];
                     $this->db->insert('passenger',$data);
                 }
-                $this->session->set_flashdata('message','<div class="alert alert-primary alert-dismissible show fade"><div class="alert-body"><button class="close" data-dismiss="alert"><span>&times;</span></button>Booking success!</div></div>');
+                $this->session->set_flashdata('swaldetail',$data['id_detail']);
                 // redirect('passenger/tiket/'.$this->input->post('id_detail'));
                 redirect('booking');
             // }

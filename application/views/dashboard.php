@@ -87,23 +87,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Chart Bulan</h4>
                   </div>
                   <div class="card-body">
-                    <canvas id="myChart2"></canvas>
-                  </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Chart Day</h4>
-                  </div>
-                  <div class="card-body">
-                    <canvas id="myChart3"></canvas>
+                    <div id="chart"></div>
                   </div>
                 </div>
             </div>

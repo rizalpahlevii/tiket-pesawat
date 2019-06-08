@@ -1,5 +1,6 @@
 <section class="section">
           <div class="section-header">
+            <div class="swaldetail" data-flashdata="<?= $this->session->flashdata('swaldetail') ?>"></div>
             <h1>Booking</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Booking</a></div>

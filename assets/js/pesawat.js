@@ -3,6 +3,12 @@ $(document).ready(function(){
     if(flashData){
         swal('Done!',flashData,'success');
     }
+    const swaldetail = $('.swaldetail').data('flashdata');
+    if(swaldetail){
+        swal('Done','Booking Selesai!','success').then(function(){
+            window.open(base_url + 'passenger/tiket/'+swaldetail);
+        });
+    }
     $(document).ready(function(){
         $('#tableku').dataTable();
     });
@@ -422,18 +428,22 @@ $(document).ready(function(){
             success:function(response){
                 conv = JSON.parse(response);
                 if(conv.status != "false"){
-                    document.location.href=base_url+'passenger/detail/'+$('#id_detail').val();
+                    swal('Done!','Booking Berhasil!','success').then(function(){
+                        document.location.href=base_url+'passenger/detail/'+$('#id_detail').val();    
+                    })
                 }else{
-                    document.location.href=base_url+'booking';
+                    swal('Error!','Booking Gagal!','error').then(function(){
+                        location.reload();
+                    });    
                 }
             }
         });
     });
     // tombol cetak tiket
-    $(document).on('click','#cetak_tiket',function(){
-        var id_detail = $('#id_detail').val();
-        window.open(base_url + 'passenger/tiket/'+id_detail);
-    });
+    // $(document).on('click','#cetak_tiket',function(){
+    //     var id_detail = $('#id_detail').val();
+    //     window.open(base_url + 'passenger/tiket/'+id_detail);
+    // });
     $(document).on('click','#btn-konfirmasi',function(){
         var html = '';
         $.ajax({
@@ -517,4 +527,44 @@ $(document).ready(function(){
             }
         });
     });
+    // cart
+        $.ajax({
+            url : base_url + 'dashboard/getChart',
+            method : 'POST',
+            dataType : 'json',
+            data :{
+                id : 'oke'
+            },
+            success:function(response){
+                console.log(response);
+                new Highcharts.Chart({
+                    chart : {
+                        renderTo : 'chart',
+                        type : 'line'
+                    },
+                    title : {
+                        text : 'Grafik Penjualan Tiket',
+                        x : -20
+                    },
+                    subtitle : {
+                        text : 'Count Tiket',
+                        x:-20
+                    },
+                    xAxis : {
+                        categories : [
+                            'Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'
+                        ]
+                    },
+                    yAxis:{
+                        title :{
+                            text : 'total pembeli'
+                        }
+                    },
+                    series: [{
+                        name : 'Data Dalam Bulan',
+                        data : response
+                    }]
+                });
+            }
+        });
 });

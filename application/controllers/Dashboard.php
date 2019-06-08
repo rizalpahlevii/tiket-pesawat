@@ -4,6 +4,7 @@
         public function __construct(){
             parent::__construct();
             cekAkses();
+            $this->load->model('Dashboard_model','dashboard');
         }
 
         public function index(){
@@ -13,6 +14,25 @@
             $data['tmp_customer'] = $this->db->get('customer')->num_rows();
             $data['tmp_penerbangan'] = $this->db->get('penerbangan')->num_rows();
             $this->template->load('template','dashboard',$data);
+        }
+        public function getChart(){
+            $query = $this->dashboard->getQueryChart()->result_array();
+            foreach ($query as $row) {
+                $data['grafik'][] = (float)$row['Januari'];
+                $data['grafik'][] = (float)$row['Februari'];
+                $data['grafik'][] = (float)$row['Maret'];
+                $data['grafik'][] = (float)$row['April'];
+                $data['grafik'][] = (float)$row['Mei'];
+                $data['grafik'][] = (float)$row['Juni'];
+                $data['grafik'][] = (float)$row['Juli'];
+                $data['grafik'][] = (float)$row['Agustus'];
+                $data['grafik'][] = (float)$row['September'];
+                $data['grafik'][] = (float)$row['Oktober'];
+                $data['grafik'][] = (float)$row['November'];
+                $data['grafik'][] = (float)$row['Desember'];
+
+            }
+            echo json_encode($data['grafik']);
         }
     }
 ?>
