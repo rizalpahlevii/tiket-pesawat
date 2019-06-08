@@ -73,9 +73,11 @@ $(document).ready(function(){
                 res = JSON.parse(hasil);
                 if( kelas != "EKONOMI" ){
                     // Jalankan bisnis
+                    $('#lb_tarif_per_kursi').click();
                     $('#tarif_per_kursi').val(res.tarif_bisnis);
                     $('#id_tarif').val(res.id_tarif);
                 }else{
+                    $('#lb_tarif_per_kursi').click();
                     $('#tarif_per_kursi').val(res.tarif_ekonomi);
                     $('#id_tarif').val(res.id_tarif);
                 }
@@ -83,9 +85,14 @@ $(document).ready(function(){
         });
     });
     $(document).on('keyup','#jumlah_penumpang',function(){
-        jml = $('#jumlah_penumpang').val();
+        $('#lb_total_tarif').click();
+        $('#lb_jml_penumpang').click(); 
+        $('#lb_total_tarif').click();
+        $('#lb_jml_penumpang').click(); 
+        jml = $(this).val();
         trf = $('#tarif_per_kursi').val();
-        $('#total_tarif').val(parseInt(jml)*parseInt(trf));
+        result = jml*trf;
+        $('#total_tarif').val(result);
     })
     $(document).on('click','#booking',function(){
         id_detail = $('#id_detail').val();

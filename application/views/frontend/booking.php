@@ -44,12 +44,12 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">code</i>
-                                <input id="id_booking" type="text" class="validate" readonly value="<?php echo $nomot; ?>">
+                                <input id="id_booking" type="text" readonly value="<?php echo $nomot; ?>">
                                 <label for="id_booking">Nomor Booking</label>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">date_range</i>
-                                <input id="tgl_booking" type="text" class="validate" readonly value="<?php echo date('Y-m-d') ?>">
+                                <input id="tgl_booking" type="text" readonly value="<?php echo date('Y-m-d') ?>">
                                 <label for="tgl_booking">Tanggal Booking</label>
                             </div>
                         </div> 
@@ -65,20 +65,20 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">monetization_on</i>
-                                <input id="tarif_per_kursi" type="text" class="validate" readonly style="cursor: no-drop;">
-                                <label for="tarif_per_kursi">Tarif Per Kursi</label>
+                                <input id="tarif_per_kursi" type="text" readonly style="cursor: no-drop;">
+                                <label for="tarif_per_kursi" id="lb_tarif_per_kursi">Tarif Per Kursi</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">perm_identity</i>
-                                <input id="jumlah_penumpang" type="text" class="validate">
-                                <label for="jumlah_penumpang">Jumlah Penumpang</label>
+                                <input id="jumlah_penumpang" type="text">
+                                <label for="jumlah_penumpang" id="lb_jml_penumpang">Jumlah Penumpang</label>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">monetization_on</i>
-                                <input id="total_tarif" type="text" class="validate" readonly style="cursor: no-drop;">
-                                <label for="total_tarif">Total Tarif</label>
+                                <input id="total_tarif" type="text" readonly style="cursor: no-drop;">
+                                <label for="total_tarif" id="lb_total_tarif">Total Tarif</label>
                                 <input type="hidden" name="id_detail" id="id_detail" value="<?php echo $nomotDetail ?>">
                                 <input type="hidden" name="id_tarif" id="id_tarif">
                                 <input type="hidden" name="status_bayar" id="status_bayar" value="BOOKING">
@@ -93,3 +93,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+    });
+</script>
