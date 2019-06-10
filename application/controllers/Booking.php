@@ -3,6 +3,7 @@
     class Booking extends CI_Controller{
         public function __construct(){
             parent::__construct();
+            cekAkses();
             $this->load->model('Booking_model','booking');
             $this->load->model('Passenger_model','passenger');
 

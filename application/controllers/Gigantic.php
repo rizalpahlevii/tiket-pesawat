@@ -9,15 +9,9 @@
             $this->load->model('Auth_model','auth');
             $this->load->model('Penerbangan_model','penerbangan');
             $this->load->model('Frontend_model','fe');
+            $this->load->model('User_model','user');
             $this->load->model('Passenger_model','passenger');
-        }
-        public function checkout($id){
-            $data['page'] = 'Checkout';
-            if(!$this->session->userdata('giganticClientLogin')){
-                redirect('gigantic/auth/login');
-            }else{
-                $this->template->load('frontend','checkout',$data);
-            }
+            $this->load->model('Contact_model','contact');
         }
         public function auth($page){
             $data['page'] = 'Landing';
@@ -55,6 +49,7 @@
         }
 
         public function index(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
             $data['page'] = 'Gigantic';
             $this->template->load('frontend','frontend/landing',$data);
         }
@@ -127,6 +122,7 @@
             redirect('gigantic/');
         }
         public function booking($id){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
             if(!$this->session->userdata('giganticClientLogin')){
                 redirect('gigantic/auth/login');
             }else{
@@ -138,6 +134,7 @@
             }
         }
         public function penerbangan(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
             $data['tmp'] = $this->penerbangan->tmp_penerbangan();
             $this->template->load('frontend','frontend/penerbangan',$data);
         }
@@ -174,58 +171,177 @@
         }
         // menampilka detail penerbangan dan customer
         public function passenger($id){
-          $where = ['detail_booking.id_detail' => $id];
-            $data['page'] = 'Detail Passenger';
-            $data['tmp'] = $this->passenger->c_detail($where)->row_array();
-            if ($data['tmp']['kelas'] != "EKONOMI") {
-                    // bisnis
-                $whereKursiTwo = [
-                    'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
-                ];
-                $data['no_kursi'] = $this->passenger->kode_bisnis($whereKursiTwo);
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+            if(!$this->session->userdata('giganticClientLogin')){
+                redirect('gigantic/auth/login');
             }else{
-                    // ekonomi
-                $whereKursiTwo = [
-                    'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
-                ];
-                $data['no_kursi'] = $this->passenger->kode_ekonomi($whereKursiTwo);
+                $where = ['detail_booking.id_detail' => $id];
+                $data['page'] = 'Detail Passenger';
+                $data['tmp'] = $this->passenger->c_detail($where)->row_array();
+                if ($data['tmp']['kelas'] != "EKONOMI") {
+                        // bisnis
+                    $whereKursiTwo = [
+                        'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
+                    ];
+                    $data['no_kursi'] = $this->passenger->kode_bisnis($whereKursiTwo);
+                }else{
+                        // ekonomi
+                    $whereKursiTwo = [
+                        'passenger.id_penerbangan'=> $data['tmp']['id_penerbangan']
+                    ];
+                    $data['no_kursi'] = $this->passenger->kode_ekonomi($whereKursiTwo);
+                }
+                $data['jml'] = $data['tmp']['jml_penumpang'];
+                $this->template->load('frontend','frontend/passenger',$data);    
             }
-            $data['jml'] = $data['tmp']['jml_penumpang'];
-            $this->template->load('frontend','frontend/passenger',$data);  
+              
         }
         // menyimpan dta penumpang client
         public function savepenumpang(){
-             $limit = $this->input->post('limit');
-            for ($i=0; $i < $limit; $i++) { 
-                $data = [
-                    'id_detail'=> $this->input->post('id_detail'),
-                    'id_penerbangan'=> $this->input->post('id_penerbangan'),
-                    'nama_passenger'=> $this->input->post('nama_penumpang')[$i],
-                    'umur'=> $this->input->post('umur')[$i],
-                    'nomor_kursi'=> $this->input->post('no_kursi')[$i]
-                ];
-                $this->db->insert('passenger',$data);
-            }
-            $this->session->set_flashdata('bkgb','Booking Berhasil!,Silahkan cek di menu pemesanan!');
-                // redirect('passenger/tiket/'.$this->input->post('id_detail'));
-            redirect('gigantic/');
-        }
-        public function pemesanan(){
-            $data['page']='Pemesanan Saya';
-            $whereIdClient = $this->session->userdata('idClient');
-            $data['row'] = $this->passenger->cetak_invoice_bukti($whereIdClient)->row();
-            if($data['row'] == null){
-                // tidak ada pesanan
-                $data['penumpang'] = "Tidak Ada Pesanan";
+            if(!$this->session->userdata('giganticClientLogin')){
+                redirect('gigantic/auth/login');
             }else{
-                $id_detail = $data['row']->id_detail;
-                $data['hrg']=$this->passenger->c_detail(['detail_booking.id_detail'=>$id_detail])->row_array();
-                $id_penerbangan = $data['row']->id_penerbangan;
-                $email = $data['row']->email;
-                $data['penumpang'] = $this->passenger->getPenumpangidpidc($id_penerbangan,$whereIdClient)->result();    
+                $limit = $this->input->post('limit');
+                for ($i=0; $i < $limit; $i++) { 
+                    $data = [
+                        'id_detail'=> $this->input->post('id_detail'),
+                        'id_penerbangan'=> $this->input->post('id_penerbangan'),
+                        'nama_passenger'=> $this->input->post('nama_penumpang')[$i],
+                        'umur'=> $this->input->post('umur')[$i],
+                        'nomor_kursi'=> $this->input->post('no_kursi')[$i]
+                    ];
+                    $this->db->insert('passenger',$data);
+                }
+                $this->session->set_flashdata('bkgb','Booking Berhasil!,Silahkan cek di menu pemesanan!');
+                    // redirect('passenger/tiket/'.$this->input->post('id_detail'));
+                redirect('gigantic/');    
             }
             
-            $this->template->load('frontend','frontend/invoice',$data);
         }
+        public function pemesanan(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+            if(!$this->session->userdata('giganticClientLogin')){
+                redirect('gigantic/auth/login');
+            }else{
+                $data['page']='Pemesanan Saya';
+                $whereIdClient = $this->session->userdata('idClient');
+                $data['row'] = $this->passenger->cetak_invoice_bukti($whereIdClient)->row();
+                if($data['row'] == null){
+                    // tidak ada pesanan
+                    $data['penumpang'] = "Tidak Ada Pesanan";
+                }else{
+                    $id_detail = $data['row']->id_detail;
+                    $data['hrg']=$this->passenger->c_detail(['detail_booking.id_detail'=>$id_detail])->row_array();
+                    $id_penerbangan = $data['row']->id_penerbangan;
+                    $email = $data['row']->email;
+                    $data['penumpang'] = $this->passenger->getPenumpangidpidc($id_penerbangan,$whereIdClient)->result();    
+                }
+                
+                $this->template->load('frontend','frontend/invoice',$data);    
+            }
+            
+        }
+        public function contact(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+            $data['page']= 'Contact';
+            $this->template->load('frontend','frontend/contact',$data);
+        }
+        public function sendmessage(){
+            $data = [
+                'nama' => $this->input->post('name'),
+                'email' => $this->input->post('email'),
+                'phone' => $this->input->post('phone'),
+                'message' => $this->input->post('message'),
+                'is_read' => '0',
+            ];
+            if($this->contact->sendmessage('message',$data) > 0){
+                $this->session->set_flashdata('bkgb','Pesan Terkirim!');
+            }else{
+                $this->session->set_flashdata('bkgb','Pesan Gagal Terkirim!');
+            }
+            redirect('gigantic/contact');
+        }
+        public function service(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+            $data['page'] = 'Service';
+            $this->template->load('frontend','frontend/service',$data);
+        }
+        public function profile(){
+            
+            if(!$this->session->userdata('giganticClientLogin')){
+                redirect('gigantic/auth/login');
+            }else{
+                $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+                
+                $data['page'] = 'Profile';
+                $this->template->load('frontend','frontend/profile',$data);
+            }
+        }
+        public function updateprofile(){
+            $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
 
+            $data['page'] = 'Profile';
+            $this->form_validation->set_rules('nama', 'Full name', 'required|trim');
+            if($this->form_validation->run() == false){
+                $where = ['email' => $this->session->userdata('emailClient')];
+                $data['user'] = $this->db->get_where('customer',['email'=>$this->session->userdata('emailClient')])->row_array();
+                redirect('gigantic/profile');
+            }else{
+                $name = $this->input->post('nama');
+                $email = $this->input->post('email');
+                   // cek jika ada ambar yang di upload
+                $upload_image = $_FILES['image']['name'];
+                if($upload_image){
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config['max_size'] = '2048';
+                    $config['upload_path'] = './assets/master/customer/';
+                    $this->load->library('upload', $config);
+                    if($this->upload->do_upload('image')){
+                        $old_image = $data['user']['image'];
+                        if($old_image != 'default.png'){
+                            unlink(FCPATH . 'assets/master/customer/' . $old_image);
+                        }
+                        $new_image = $this->upload->data('file_name');
+                        $this->db->set('image' , $new_image);
+                    }else{
+                        echo $this->upload->display_errors();
+                    }
+                }
+                $this->db->set('nama', $name);
+                $this->db->where('email' , $email);
+                $this->db->update('customer');
+                $this->session->set_flashdata('bkgb','Profile Berhasil Diperbarui!');
+                redirect('gigantic/profile');
+            }
+        }
+        public function changepassword(){
+            $data['user'] = $this->db->get_where('customer',['email' => $this->session->userdata('emailClient')])->row_array();
+            $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+            $this->form_validation->set_rules('new_password', 'New Password', 'required|trim|min_length[3]|matches[password_confirm]');
+            $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'required|trim|min_length[3]|matches[new_password]');
+            if($this->form_validation->run() == false){
+                redirect('gigantic/profile');
+            }else{
+                $new_password = $this->input->post('new_password');
+                $current_password = $this->input->post('current_password');
+                if(! password_verify($current_password, $data['user']['password'])){
+                    $this->session->set_flashdata('messagechangepassword','Wrong current password!-error');
+                    redirect('gigantic/profile');
+                }else{
+                    if($current_password == $new_password){
+                        $this->session->set_flashdata('messagechangepassword','New password cannot be the same as current password!-error');
+                        redirect('gigantic/profile');
+                    }else{
+                        $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+                        $this->db->set('password', $password_hash);
+                        $this->db->where('email', $this->session->userdata('email'));
+                        $this->db->update('customer');
+                        $this->session->set_flashdata('messagechangepassword', 'Password changed!-success');
+
+                        redirect('gigantic/profile');
+                    }
+                }
+            }
+        }
     }
+?>

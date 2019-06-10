@@ -3,6 +3,11 @@ $(document).ready(function(){
     if(flashData){
         swal('Done!',flashData,'success');
     }
+    const swalmessage = $('.messagechangepassword').data('swalmessage');
+    if(swalmessage){
+        var expl = swalmessage.split('-');
+        swal(expl[1]+'!',expl[0],expl[1]);
+    }
     $('#tblTampilPnb').hide();
     $(document).on('click','#tmbCariPnb',function(){
         asaltujuan();

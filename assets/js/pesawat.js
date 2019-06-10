@@ -527,6 +527,45 @@ $(document).ready(function(){
             }
         });
     });
-    // cart
-    
+    $(document).on('click','#buka-pesan',function(){
+        $.ajax({
+            url : base_url + 'pesan/getPesanById',
+            method : 'POST',
+            dataType : 'json',
+            data : {
+                id : $(this).data('id')
+            },
+            success:function(response){
+                console.log(response);
+                $('#exampleModalLabel').html('Pesan ' + response.email);
+                $('#nama').html(response.nama);
+                $('#email').html(response.email);
+                $('#phone').html(response.phone);
+                $('#message').html(response.message);
+                $('#modalPesan').modal('show');
+                updateStatusMessage(response.id);
+            }
+        });
+    });
+    loadPesan();
+    function loadPesan(){
+        $('#load-pesan').load(base_url + 'pesan/loadlist');  
+    }
+    setInterval(function(){ loadPesan() }, 10000);
+
+
+    function updateStatusMessage(id){
+        $.ajax({
+            url : base_url + 'pesan/updateStatusMessage',
+            method:'POST',
+            data : {
+                id :id
+            },
+            success:function(response){
+                console.log(response);
+                loadPesan();
+            }
+        });
+    }
+
 });

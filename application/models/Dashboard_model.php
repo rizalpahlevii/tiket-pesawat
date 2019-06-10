@@ -18,5 +18,11 @@
   ifnull((SELECT count(id_booking) FROM (booking)WHERE((Month(tgl_booking)=12)AND (YEAR(tgl_booking)=2019))),0) AS `Desember`
  FROM booking GROUP BY YEAR(tgl_booking)");
         }
+        public function updateStatusMessage($data,$where){
+          $this->db->set($data);
+          $this->db->where($where);
+          $this->db->update('message');
+          return $this->db->affected_rows();   
+        }
     }
 ?>

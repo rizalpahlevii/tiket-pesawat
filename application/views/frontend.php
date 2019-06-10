@@ -14,7 +14,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript">base_url = '<?php echo base_url(); ?>'</script>
-    <title>GIGANTIC</title>
+    <title><?php echo $page; ?> | Airport</title>
   </head>
 
   <body id="home" class="scrollspy">
@@ -38,12 +38,12 @@
             <ul class="right hide-on-med-and-down">
               <li><a href="<?php echo site_url('gigantic') ?>">Home</a></li>
               <li><a href="<?php echo site_url('gigantic/penerbangan') ?>">Penerbangan</a></li>
-              <li><a href="<?php echo site_url('gigantic/services') ?>">Services</a></li>
+              <li><a href="<?php echo site_url('gigantic/service') ?>">Services</a></li>
               <li><a href="<?php echo site_url('gigantic/contact') ?>">Contact Us</a></li>
               <?php if(!$this->session->userdata('giganticClientLogin') ): ?>
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">account_circle</i></a></li>
               <?php else: ?>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><i class="material-icons left">account_circle</i><?php echo $this->session->userdata('namaClient') ?></a></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><i class="material-icons left">account_circle</i><?php echo $user['nama'] ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
