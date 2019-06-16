@@ -5,21 +5,21 @@
         <li>
           <img src="<?= base_url('assets/landing/') ?>4.jpg">
           <div class="caption left-align">
-            <h3>This is our big Tagline!</h3>
+            <h3>Penerbangan</h3>
             <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
         <li>
-          <img src="<?= base_url('assets/landing/') ?>2.jpg">
-          <div class="caption right-align">
-            <h3>This is our big Tagline!</h3>
+          <img src="<?= base_url('assets/landing/') ?>6.jpg">
+          <div class="caption left-align">
+            <h3>Service</h3>
             <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
         <li>
-          <img src="<?= base_url('assets/landing/') ?>1.jpg">
+          <img src="<?= base_url('assets/landing/') ?>5.jpg">
           <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
+            <h3>Booking</h3>
             <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
@@ -162,34 +162,14 @@
     <!-- portfolio -->
     <section id="portfolio" class="portfolio scrollspy">
       <div class="container">
-        <h3 class="light center grey-text text-darken-3">Portfolio</h3>
+        <h3 class="light center grey-text text-darken-3">Pesawat</h3>
         <div class="row">
+          <?php foreach($pesawat as $p) :?>
           <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/1.png" class="responsive-img materialboxed">
+            <img src="<?= base_url('assets/master/pesawat/') . $p['image'] ?>" class="responsive-img materialboxed">
           </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/2.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/3.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/4.png" class="responsive-img materialboxed">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/5.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/6.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/1.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="<?= base_url('assets/fe/') ?>img/portfolio/2.png" class="responsive-img materialboxed">
-          </div>
+          <?php endforeach; ?>
+          
         </div>
       </div>
     </section>

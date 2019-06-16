@@ -68,7 +68,7 @@ $(document).ready(function(){
         kelas = $(this).val();
         id_penerbangan = $('#id_penerbangan').val();
         $.ajax({
-            url : base_url + 'booking/optkelas',
+            url : base_url + 'gigantic/optkelas',
             method : 'POST',
             data : {
                 kelas : kelas,
@@ -104,7 +104,7 @@ $(document).ready(function(){
         // console.log('oke');
         
         $.ajax({
-            url : base_url + 'booking/insert',
+            url : base_url + 'gigantic/savebooking',
             method : 'POST',
             data : {
                 id_booking : $('#id_booking').val(),

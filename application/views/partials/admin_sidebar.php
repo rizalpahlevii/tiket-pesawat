@@ -15,5 +15,7 @@
               <li class="menu-header">LAIN - LAIN</li>
               <li class="<?php echo ($this->uri->segment(1) == "laporan") ? "active" : ""; ?>"><a class="nav-link" href="<?= site_url('laporan'); ?>"><i class="fas fa-clipboard"></i> <span> Laporan</span></a></li>
               <li class="<?php echo ($this->uri->segment(1) == "user") ? "active" : ""; ?>"><a class="nav-link" href="<?= site_url('user'); ?>"><i class="fas fa-user"></i> <span> User</span></a></li>
-              <li class="<?php echo ($this->uri->segment(1) == "pesan") ? "active" : ""; ?>"><a class="nav-link" href="<?= site_url('pesan'); ?>"><i class="fas fa-mail-bulk"></i> <span> Pesan</span></a></li>
-              <li class="<?php echo ($this->uri->segment(1) == "backup") ? "active" : ""; ?>"><a class="nav-link" href="#"><i class="fas fa-database"></i> <span> Backup Database</span></a></li>
+              <?php $psn = $this->db->get_where('message',['is_read'=> '0'])->num_rows(); ?>
+              <li class="<?php echo ($this->uri->segment(1) == "pesan") ? "active" : ""; ?>"><a class="nav-link" href="<?= site_url('pesan'); ?>"><i class="fas fa-mail-bulk"></i> <span> Pesan</span><span class="badge badge-pill badge-warning"><?= $psn; ?></span></a></li>
+
+              <li class="<?php echo ($this->uri->segment(1) == "backup") ? "active" : ""; ?>"><a class="nav-link" href="<?php echo site_url('backup/') ?>"><i class="fas fa-database"></i> <span> Backup Database</span></a></li>

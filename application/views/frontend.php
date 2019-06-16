@@ -55,9 +55,13 @@
     <ul class="sidenav" id="mobile-nav">
        <li><a href="<?php echo site_url('gigantic') ?>">Home</a></li>
         <li><a href="<?php echo site_url('gigantic/penerbangan') ?>">Penerbangan</a></li>
-        <li><a href="<?php echo site_url('gigantic/services') ?>">Services</a></li>
+        <li><a href="<?php echo site_url('gigantic/service') ?>">Services</a></li>
         <li><a href="<?php echo site_url('gigantic/contact') ?>">Contact Us</a></li>
-      <li><a href="#contact"><i class="material-icons right">account_circle</i>Rizal</a></li>
+       <?php if(!$this->session->userdata('giganticClientLogin') ): ?>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">account_circle</i></a></li>
+      <?php else: ?>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><i class="material-icons left">account_circle</i><?php echo $user['nama'] ?></a></li>
+       <?php endif; ?>
 
     </ul>
 

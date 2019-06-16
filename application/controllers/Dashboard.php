@@ -13,6 +13,7 @@
             $data['tmp_bandara'] = $this->db->get('bandara')->num_rows();
             $data['tmp_customer'] = $this->db->get('customer')->num_rows();
             $data['tmp_penerbangan'] = $this->db->get('penerbangan')->num_rows();
+            $data['tmp_pesan'] = $this->db->get('message')->num_rows();
             $this->template->load('template','dashboard',$data);
         }
         public function getChart(){
@@ -35,4 +36,3 @@
             echo json_encode($data['grafik']);
         }
     }
-?>
