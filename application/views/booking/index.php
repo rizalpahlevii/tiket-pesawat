@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-sm-8">
                       <div class="form-group">
-                        <label>Asal Penerbangan</label>
+                        <label>Filter Booking</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
