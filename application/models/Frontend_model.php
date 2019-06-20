@@ -8,6 +8,7 @@
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
             $this->db->where($where);
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get()->result();
         }
         public function tampilPnb(){
@@ -15,6 +16,7 @@
             $this->db->from('penerbangan');
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get()->result();
         }
         public function tampilPnbAsalTujuan($where1,$where2){
@@ -24,6 +26,7 @@
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
             $this->db->like($where1);
             $this->db->like($where2);
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get()->result();
         }
         public function tampilPnbBandara($where){
@@ -32,6 +35,7 @@
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
             $this->db->like($where);
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get()->result();
         }
         public function tampilPnbPesawat($where){
@@ -40,6 +44,7 @@
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
             $this->db->like($where);
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get()->result();
         }
     }

@@ -22,6 +22,7 @@
             $this->db->join('pesawat','pesawat.id_pesawat=penerbangan.id_pesawat');
             $this->db->join('bandara','bandara.id_bandara=penerbangan.id_bandara');
             $this->db->join('tarif_penerbangan','tarif_penerbangan.id_penerbangan=penerbangan.id_penerbangan');
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             $this->db->like('penerbangan.asal',$asal);
             $this->db->like('penerbangan.tujuan',$tujuan);
             return $this->db->get();

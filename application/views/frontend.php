@@ -30,6 +30,15 @@
         <li><a href="<?php echo site_url('gigantic/pemesanan') ?>">Pemesanan Saya</a></li>
         <li><a href="<?php echo site_url('gigantic/logout') ?>">Logout</a></li>
       </ul>
+      <ul id="dropdown3" class="dropdown-content">
+        <li><a href="<?php echo site_url('gigantic/auth/login') ?>">Login</a></li>
+        <li><a href="<?php echo site_url('gigantic/auth/registration') ?>">Register</a></li>
+      </ul>
+      <ul id="dropdown4" class="dropdown-content">
+        <li><a href="<?php echo site_url('gigantic/profile') ?>">Profile</a></li>
+        <li><a href="<?php echo site_url('gigantic/pemesanan') ?>">Pemesanan Saya</a></li>
+        <li><a href="<?php echo site_url('gigantic/logout') ?>">Logout</a></li>
+      </ul>
       <nav class="blue darken-2">
         <div class="container">
           <div class="nav-wrapper">
@@ -58,9 +67,9 @@
         <li><a href="<?php echo site_url('gigantic/service') ?>">Services</a></li>
         <li><a href="<?php echo site_url('gigantic/contact') ?>">Contact Us</a></li>
        <?php if(!$this->session->userdata('giganticClientLogin') ): ?>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">account_circle</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown3"><i class="material-icons right">account_circle</i></a></li>
       <?php else: ?>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><i class="material-icons left">account_circle</i><?php echo $user['nama'] ?></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown4"><i class="material-icons left">account_circle</i><?php echo $user['nama'] ?></a></li>
        <?php endif; ?>
 
     </ul>

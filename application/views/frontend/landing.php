@@ -36,15 +36,15 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quo accusantium repellat similique ipsa doloribus in aliquam earum eaque, possimus necessitatibus sunt repellendus ullam recusandae voluptas dolore debitis saepe facere.</p>
           </div>
           <div class="col m6 light">
-            <p>WEB DEVELOPMENT</p>
+            <p>INFORMASI</p>
             <div class="progress">
                 <div class="determinate blue" style="width: 95%"></div>
             </div>
-            <p>MOBILE APP DEVELOPMENT</p>
+            <p>PENERBANGAN</p>
             <div class="progress">
                 <div class="determinate blue" style="width: 85%"></div>
             </div>
-            <p>GAME DEVELOPMENT</p>
+            <p>BOOKING</p>
             <div class="progress">
                 <div class="determinate blue" style="width: 90%"></div>
             </div>

@@ -15,6 +15,7 @@
             $this->db->join('penerbangan', 'tarif_penerbangan.id_penerbangan = penerbangan.id_penerbangan');
             $this->db->join('pesawat', 'pesawat.id_pesawat = penerbangan.id_pesawat');
             $this->db->join('bandara', 'bandara.id_bandara = penerbangan.id_bandara');
+            $this->db->where('penerbangan.tgl_penerbangan >=',date('Y-m-d'));
             return $this->db->get();
         }
         public function buat_kode(){

@@ -7,7 +7,17 @@ $(document).ready(function(){
             id : 'oke'
         },
         success:function(response){
-            fungsiChart1(response);
+            fungsiChart1(response);      
+        }
+    });
+    $.ajax({
+        url : base_url + 'dashboard/getChartPendapatan',
+        method : 'POST',
+        dataType : 'json',
+        data :{
+            id : 'oke'
+        },
+        success:function(response){
             fungsiChart2(response);            
         }
     });
@@ -15,13 +25,20 @@ $(document).ready(function(){
     function fungsiChart2(response){
         var chart = Highcharts.chart('chart2', {
              title: {
-                text: 'Grafik Penjualan Tiket'
+                text: 'Grafik Pendapatan'
             },
              subtitle: {
                 text: 'Plain'
             },
             xAxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis : {
+                labels: {
+                    formatter : function(){
+                        return this.value;
+                    }
+                }
             },
             series: [{
                 type: 'column',
@@ -90,8 +107,13 @@ $(document).ready(function(){
                 ]
             },
             yAxis:{
+                labels: {
+                    formatter : function(){
+                        return this.value;
+                    }
+                },
                 title :{
-                    text : 'total pembeli'
+                    text : 'Values'
                 }
             },
             series: [{

@@ -7,8 +7,8 @@
             $this->db->from('penerbangan');
             $this->db->join('pesawat','pesawat.id_pesawat=penerbangan.id_pesawat');
             $this->db->join('bandara','bandara.id_bandara=penerbangan.id_bandara');
+            $this->db->where('penerbangan.tgl_penerbangan >=', date('Y-m-d'));
             $this->db->order_by('penerbangan.tgl_penerbangan ASC');
             return $this->db->get();          
         }
     }
-?>

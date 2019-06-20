@@ -88,8 +88,8 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Boarding Time</label>
-                    <p><?php echo $data->tgl_penerbangan ?></p>
+                    <label>No Kursi</label>
+                    <p><?php echo $data->nomor_kursi ?></p>
                 </div>
             </div>
             <div class="col-sm-4">
