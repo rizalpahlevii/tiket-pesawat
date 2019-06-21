@@ -1,0 +1,137 @@
+[33mcommit f699e109d7255db5b71b707a51991d7967cd52c4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;32mupdate[m[33m)[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Thu Jun 20 17:27:29 2019 +0700
+
+    tambahan
+
+[33mcommit 91c5a6a46b1c7ad2d50afcedf0448e15ee0589ba[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Thu Jun 20 17:09:42 2019 +0700
+
+    filter booking
+
+[33mcommit 02510ce6e8430388baf4d3cea1de543dd89bab80[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Thu Jun 20 16:28:03 2019 +0700
+
+    update
+
+[33mcommit 4423da981111bd4936025b6120e3399f18df3567[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sun Jun 16 11:41:45 2019 +0700
+
+    Terkahir
+
+[33mcommit 8283eb02dd245bc81d45d7f21ece3d4dffcc5418[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Mon Jun 10 10:45:10 2019 +0700
+
+    Menambahkan halaman service,contact us,lihat pesan lewat admin,update profile
+
+[33mcommit 7b3bc1a94f7dd5af88aa56942209916ce1327769[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat Jun 8 17:38:19 2019 +0700
+
+    Update
+
+[33mcommit bb896358eef36f8794f80ff4b088bc1158ec60a8[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat Jun 8 12:41:41 2019 +0700
+
+    Chart Update
+
+[33mcommit 25b9788c52ee5091bf81384aa12f5bc23e50de80[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat Jun 8 11:13:48 2019 +0700
+
+    Menambahkan chart didashboard
+
+[33mcommit 52ccc64b9d3d43cb996ef93f72e7c0a5e5cad302[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat Jun 8 00:47:47 2019 +0700
+
+    mengkonfirmasi pesanan user lewat admin
+
+[33mcommit c89f36d2a052cfed5723cffb771b324f941592fb[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Fri Jun 7 13:07:10 2019 +0700
+
+    Update pemesanan client
+
+[33mcommit b26b7a6b3114ef755cdd627d613d2f3b04480b46[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Thu Jun 6 17:01:04 2019 +0700
+
+    Commit oke
+
+[33mcommit 24afd1bfbfd9759d33dae4fff90c711b40d69b1f[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Fri May 31 17:37:49 2019 +0700
+
+    Memperbaiki frontend
+
+[33mcommit 6c86ec1871669e38d1265f96f822969aecb18fa9[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Fri May 31 11:25:02 2019 +0700
+
+    Menambahkan fitur booking pada user client
+
+[33mcommit de8ec40fa1f187655b91e676c18fd37acb789686[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Wed May 29 13:21:35 2019 +0700
+
+    ysss
+
+[33mcommit f339a61928c618d630f86745867910d0a1e87172[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Tue May 28 21:53:51 2019 +0700
+
+    Frontend landingpage oke
+
+[33mcommit 32eb59a1f50c13923a9a6f2ca710d82df8a67843[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Tue May 28 16:28:34 2019 +0700
+
+    mencoba commit push github
+
+[33mcommit 3efe7ec673bfc4c45210bcddcef3f98a05550c05[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Tue May 28 16:19:52 2019 +0700
+
+    Memperbarui fe
+
+[33mcommit c03015437a5296017cac3d6ccf0cd9fa21b2d60b[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Tue May 28 15:44:12 2019 +0700
+
+    awal pembuatan frontend
+
+[33mcommit be38a3f759aa4fcc55d9e741abd24535e6c59132[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Mon May 27 18:38:01 2019 +0700
+
+    Menmabahkan fitur notifikasi
+
+[33mcommit 1a351a46f7064b5404d1e06d01520d2ca207bfcd[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Mon May 27 12:45:06 2019 +0700
+
+    menambahkan fungsi kurangi kursi saat booking
+
+[33mcommit 27e09213f6defb77c2779a92948b88050a367d1a[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Mon May 27 11:33:59 2019 +0700
+
+    menghapus isi file backup.php
+
+[33mcommit 82dcdbc02073c2a1295ac9036056705bbe453b83[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat May 25 18:40:47 2019 +0700
+
+    menambahkan file backup.php
+
+[33mcommit a3f67a0c61cbd816312a929add8334d2b002f964[m
+Author: Muhammad Rizal Pahlevi <mrizalpahlevi372@gmail.com>
+Date:   Sat May 25 18:35:54 2019 +0700
+
+    commit pertama

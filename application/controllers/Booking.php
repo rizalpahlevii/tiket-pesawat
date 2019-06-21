@@ -5,17 +5,17 @@ class Booking extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        cekAkses();
         $this->load->model('Booking_model', 'booking');
         $this->load->model('Passenger_model', 'passenger');
         $this->load->model('Penerbangan_model', 'penerbangan');
-        $this->load->library('form_validation');
     }
 
     public function index()
     {
+        $this->load->library('form_validation');
+        cekAkses();
         $data['page'] = 'Booking';
-        $data['tmp_filter'] = $this->penerbangan->tmp_penerbangan();
+        $data['tmp_filter'] = $this->penerbangan->tmp_penerbanganNonWhere();
         $this->form_validation->set_rules('inp_filter_booking', 'Filter', 'required');
         if ($this->form_validation->run() == false) {
             $data['tampil_select'] = '';

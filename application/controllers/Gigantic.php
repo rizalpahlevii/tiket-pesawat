@@ -114,12 +114,10 @@
             redirect('gigantic/auth/login');
         }
         public function logout(){
-            session_start();
             $this->session->unset_userdata('giganticClientLogin');
             $this->session->unset_userdata('namaClient');
             $this->session->unset_userdata('emailClient');
-            session_destroy();
-            $_SESSION = [];
+            $this->session->unset_userdata('idClient');
             redirect('gigantic/');
         }
         public function booking($id){
