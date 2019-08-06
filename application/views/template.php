@@ -51,7 +51,10 @@
               $userData = $this->db->get_where('user',['email'=>$this->session->userdata('email')])->row();
              ?>
             <img alt="image" src="<?php echo base_url('assets/master/user/' . $userData->image) ?>" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, <?php echo $this->session->userdata('nama') ?></div></a>
+            <?php 
+              $qry = $this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();
+             ?>
+            <div class="d-sm-none d-lg-inline-block">Hi, <?php echo $qry['nama_user'] ?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="<?php echo site_url('user/profile') ?>" class="dropdown-item has-icon">

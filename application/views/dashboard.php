@@ -101,23 +101,12 @@
       </div>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
       <div class="card">
         <div class="card-header">
-          <h4>Chart Bulan</h4>
-        </div>
-        <div class="card-body">
-          <div id="chart"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 col-md-12 col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Chart Bulan 2</h4>
+          <h4>Grafik Pendapatan</h4>
         </div>
         <div class="card-body">
           <div id="chart2"></div>

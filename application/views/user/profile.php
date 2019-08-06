@@ -33,7 +33,7 @@
                     </div>
                   </div>
                   <div class="profile-widget-description">
-                    <div class="profile-widget-name">Ujang Maman <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> <?php echo $this->session->userdata('level') ?></div></div>
+                    <div class="profile-widget-name"><?php echo $user['nama_user'] ?> <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> <?php echo $this->session->userdata('level') ?></div></div>
                     <div class="row">
                       <div class="col-lg-12">
                         <?php echo $this->session->flashdata('message'); ?>

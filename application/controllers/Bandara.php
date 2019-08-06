@@ -168,4 +168,3 @@
             $this->pdf->generate($html,$filename,true,'A4','portrait');
         }
     }
-?>
